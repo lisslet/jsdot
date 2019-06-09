@@ -1,4 +1,14 @@
 import {PipeBase} from './pipe-base.js';
+import {DotGetter} from '../types';
+
+class EventSetter {
+}
+
+export interface PipeBase<Dot> {
+    pipe(a: EventSetter): Dot;
+
+    pipe(a: any, b: EventSetter): Dot;
+}
 
 export class Dot extends PipeBase<Dot> {
     constructor(selector: string);
@@ -11,10 +21,13 @@ export class Dot extends PipeBase<Dot> {
             parents = [document];
         }
 
-
-        const nodes = typeof selector === 'string' ?
-            getNodes(parents, selector) :
-            selector;
+        const nodes = selector instanceof Dot ?
+            selector.nodes :
+            typeof selector === 'string' ?
+                getNodes(parents, selector) :
+                Array.isArray(selector) ?
+                    selector :
+                    [selector];
 
         this.nodes = nodes;
 
@@ -29,7 +42,7 @@ export class Dot extends PipeBase<Dot> {
     nodes: Array<Element>;
     length = 0;
 
-    get(method, args) {
+    get(method, args = []) {
         let requestLength = method.length;
 
         if (args) {
@@ -41,19 +54,31 @@ export class Dot extends PipeBase<Dot> {
         const end = this.length;
         let key = -1;
 
-        switch (requestLength) {
-            case 1:
+        if (method.length - args.length < 1) {
+            if (requestLength === 1) {
                 return method.apply(nodes[key], args);
-            default:
+            } else {
                 while (++key < end) {
                     result.push(method.apply(nodes[key], args));
                 }
+            }
+        } else {
+            if (requestLength === 1) {
+                args.unshift(nodes[0]);
+                return method.apply(dot(nodes[0]), args);
+            } else {
+                args.unshift(null);
+                while (++key < end) {
+                    args[0] = nodes[key];
+                    result.push(dot(nodes[key]), args);
+                }
+            }
         }
 
         return result;
     }
 
-    set(method, args) {
+    set(method, args = []) {
         this.get(method, args);
         return this;
     }
@@ -64,6 +89,7 @@ export class Dot extends PipeBase<Dot> {
 }
 
 export function dot(selector: string): Dot;
+export function dot(node: Element): Dot;
 export function dot(nodes: Array<Element>): Dot;
 export function dot(parents: Array<Element>, selector: string): Dot;
 export function dot(parents, selector?) {

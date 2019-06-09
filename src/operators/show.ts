@@ -1,6 +1,7 @@
 import {Setter} from '../types';
+import {Dot} from '../core/dot.js';
 
-export function $show(): Setter;
+export function $show(): Setter<Dot>;
 export function $show() {
 	return setter;
 }
@@ -10,5 +11,5 @@ function setter() {
 }
 
 function set() {
-	this.style.display = 'block';
+	this.style.display = 'inherit';
 }

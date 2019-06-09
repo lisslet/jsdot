@@ -1,4 +1,4 @@
-import {Dot} from '../classes/dot.js';
+import {Dot} from '../core/dot';
 
 export function clone$() {
 	return function () {

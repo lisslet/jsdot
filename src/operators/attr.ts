@@ -1,4 +1,5 @@
 import {PropGetter, PropSetter, Stringage} from '../types';
+import {Dot} from '../core/dot';
 
 function getter(name) {
 	return this.getAttribute(name);
@@ -9,7 +10,7 @@ function setter(name, value) {
 }
 
 
-export function $attr(name: string, value: Stringage): PropSetter;
+export function $attr(name: string, value: Stringage): PropSetter<Dot>;
 export function $attr(name, value) {
 	return function () {
 		return this.set(setter, [name, value]);

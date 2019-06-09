@@ -1,13 +1,15 @@
-export type Setter = () => void;
+import {Dot} from './core/dot';
+
+export type Setter<Self> = () => Self;
 
 
-export type PropSetter = (p: string, v: string | number) => void;
+export type PropSetter<Self> = (p: string, v: string | number) => Self;
 export type PropGetter = (p: string) => Value;
 
 export type Value = string | number;
 
-export type NumSetter = (a: number) => PropSetter;
-export type Setters = Setter | NumSetter | PropSetter;
+export type NumSetter<Self> = (a: number) => Self;
+export type Setters<Self> = Setter<Self> | NumSetter<Self> | PropSetter<Self>;
 
 export type NumGetter = () => number;
 export type StrGetter = () => string;
@@ -28,3 +30,7 @@ export type StrsGetter = () => string[];
 export type ListGetter = () => DOMTokenList;
 
 export type QueryGetter = (selector: string) => HTMLElement[];
+
+export type DotGetter = () => Dot;
+
+export type eventSetter<Self> = (type: string, method: Function) => Self;

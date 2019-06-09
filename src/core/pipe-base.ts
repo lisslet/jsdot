@@ -3,7 +3,6 @@ import {BoolGetters, NumGetters, Setter, Setters, StrGetters} from '../types';
 
 export abstract class PipeBase<Self> {
 
-
     pipe(a: BoolGetters): Boolean[];
     pipe(a: any, b: BoolGetters): Boolean[];
     pipe(a: any, b: any, c: BoolGetters): Boolean[];
@@ -15,13 +14,12 @@ export abstract class PipeBase<Self> {
     pipe(a: any, b: any, c: NumGetters): number[];
     pipe(a: any, b: any, c: any, d: NumGetters): number[];
     pipe(a: any, b: any, c: any, d: any, e: NumGetters): number[];
-    
+
     pipe(a: StrGetters): string[];
     pipe(a: any, b: StrGetters): string[];
     pipe(a: any, b: any, c: StrGetters): string[];
     pipe(a: any, b: any, c: any, d: StrGetters): string[];
     pipe(a: any, b: any, c: any, d: any, e: StrGetters): string[];
-
     /*
     pipe(a: ObjectGetter): {}[];
     pipe(a: any, b: ObjectGetter): {}[];
@@ -30,8 +28,9 @@ export abstract class PipeBase<Self> {
     pipe(a: any, b: any, c: any, d: any, e: ObjectGetter): {}[];
     */
 
-    pipe(a: Setters): Self;
-    pipe(a: Setter, ...more: Setters[]): Self;
+    pipe(a: Setter<Self>): Self;
+    pipe(a: Setter<Self>, ...more: Setters<Self>[]): Self;
+    pipe(operator): any;
 
     pipe(operator): any {
         let result = this;

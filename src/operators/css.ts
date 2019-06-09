@@ -1,4 +1,5 @@
 import {PropSetter, PropStrGetter} from '../types';
+import {Dot} from '../core/dot';
 
 const shortenProperties = {
     bg: 'background',
@@ -11,7 +12,7 @@ const shortenProperties = {
 };
 
 
-export function $css(property:string, value:string | number): PropSetter;
+export function $css(property:string, value:string | number): PropSetter<Dot>;
 export function $css(property, value) {
     property = shortenProperties[property] || property;
 
