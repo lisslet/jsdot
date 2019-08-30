@@ -6,7 +6,7 @@ import {$prepend} from '../dist/operators/prepend.js';
 import {$append} from '../dist/operators/append.js';
 
 dot(window).pipe($ready(function () {
-	RowControl.autoload();
+	RowControl.forRoot();
 
 	var div = document.createElement('div');
 	div.innerHTML = 'prepend';

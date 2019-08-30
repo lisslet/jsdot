@@ -1,6 +1,7 @@
 import {dot, Dot} from '../../core/dot.js';
 import {$click} from '../../operators/click.js';
 import {query$} from '../../operators/query.js';
+import {Extend} from '../../core/extend.js';
 
 type RowControlGetter = () => RowControl;
 
@@ -15,8 +16,9 @@ function mixer(tags, attributeName) {
         .join(',');
 }
 
+
 export class RowControl extends Dot {
-    static autoload() {
+    static forRoot() {
         dot(mixer(['table', 'tbody', 'tr'], selector)).pipe($rowControl());
     }
 
@@ -27,7 +29,7 @@ export class RowControl extends Dot {
 
         this.pipe(
             query$(`button[${selector}]`),
-            $click(function(event){
+            $click(function (event) {
                 console.log('click');
             })
         );
