@@ -1,3 +1,5 @@
+import {ApiOptions, ApiServiceOptions, HttpMethods} from './types';
+
 export interface ApiMethods {
     get();
 
@@ -20,10 +22,14 @@ export class ApiService implements ApiMethods {
         return ApiService;
     }
 
-    delete() {
+    options(options: ApiServiceOptions) {
+
     }
 
     get() {
+    }
+
+    delete() {
     }
 
     patch() {
@@ -36,7 +42,7 @@ export class ApiService implements ApiMethods {
     }
 }
 
-export class Api<PARAMS, RESPONSE, BODY> implements ApiMethods {
+export class Api<PARAMS, BODY, RESPONSE> implements ApiMethods {
     delete() {
     }
 
@@ -52,5 +58,8 @@ export class Api<PARAMS, RESPONSE, BODY> implements ApiMethods {
     put() {
     }
 
+    request(params: PARAMS, options: ApiOptions);
+    request(params) {
 
+    }
 }

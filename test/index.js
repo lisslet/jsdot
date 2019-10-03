@@ -23,10 +23,12 @@ import {Dates} from '../dist/extends/dates.js';
 
 const now = new Dates;
 
-console.log(now.format('d, D, j, l, N S, w, z'));
-console.log(now.format('W'));
-console.log(now.format('F, m, M, n, t'));
-console.log(now.format('L, o, Y, y'));
-console.log(now.format('a, A, B, g, G, -> h, -> H, i, s, u, v'));
-console.log(now.format('e, I, O, P, T, Z'));
-console.log(now.format('c, r, U'));
+console.log(now.z());
+
+// console.log(now.format('d, D, j, l, N S, w, z'));
+// console.log(now.format('W'));
+// console.log(now.format('F, m, M, n, t'));
+// console.log(now.format('L, o, Y, y'));
+// console.log(now.format('a, A, B, g, G, -> h, -> H, i, s, u, v'));
+// console.log(now.format('e, I, O, P, T, Z'));
+// console.log(now.format('c, r, U'));
