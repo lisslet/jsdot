@@ -1,0 +1,1 @@
+importScripts('../dist/patterns/worker/works.js');
