@@ -1,6 +1,7 @@
 import {ListGetter} from '../types';
 
-export function $class(className, ...more) {
+export function $class(className, ...more: any[]);
+export function $class(className) {
     return this.set(setter, Array.from(arguments));
 }
 
