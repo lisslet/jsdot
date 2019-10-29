@@ -1,4 +1,4 @@
-import {Dot} from '../core/dot.js';
+import {Dot} from '../core/dot';
 
 export const $log = setter;
 

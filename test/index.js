@@ -19,6 +19,7 @@ dot(window).pipe($ready(function () {
 
  */
 
+/*
 import {Wait} from '../dist/patterns/wait/wait.js';
 
 Wait.for((waiter) => {
@@ -30,3 +31,12 @@ Wait.for((waiter) => {
 	.then(res => {
 		console.log(res);
 	});
+ */
+
+import {Works} from '../dist/work/work.js';
+
+const works = Works.by(new Worker('../dist/work/test-worker.js'));
+
+const test = works.do('test');
+
+test.request({a: 'a'});

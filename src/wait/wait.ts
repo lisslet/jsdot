@@ -20,7 +20,6 @@ export class Target {
     }
 }
 
-
 export type waiter = (waiter: Target) => any;
 
 export class Wait {
