@@ -35,7 +35,7 @@ Wait.for((waiter) => {
 
 import {Works} from '../dist/work/work.js';
 
-const works = Works.by(new Worker('../dist/work/test-worker.js'));
+const works = Works.by(new Worker('../dist/work/test-worker.js', {type: 'module'}));
 
 const test = works.do('test');
 

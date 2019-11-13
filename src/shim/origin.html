@@ -1,0 +1,17 @@
+<script>
+
+	function increase(value) {
+		return new Promise(function (resolve) {
+			console.log(value);
+			return resolve(value + 1);
+		});
+	}
+
+	var promise = new Promise(function (resolve, reject) {
+		return resolve(Promise.resolve(1));
+	});
+
+	promise.then(increase)
+		.then(increase)
+		.then(increase);
+</script>
